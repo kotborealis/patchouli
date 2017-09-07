@@ -13,14 +13,11 @@ const ignore_ext_filter = (file) =>
     !config.ignore_ext.reduce((bool, ext) => file_extension_is(file, ext) || bool, false);
 
 const build_file = (input) => {
-    console.log("WANNA BUILD", input);
     if(!ignore_ext_filter(input)) return;
 
-    console.log("BUILD", input);
-
     const file = path.isAbsolute(input) ? input : path.join(process.cwd(), input);
-    const type = args.type || 'html';
-    const output = args.output || outputFilename(file, type);
+    const type = args.type || args.t || 'html';
+    const output = args.output || args.o || outputFilename(file, type);
     build(file, output, type);
 };
 
