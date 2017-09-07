@@ -1,0 +1,19 @@
+{
+  "name": "patchouli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^3.5.0"
+  },
+  "dependencies": {
+    "chen.js": "github:kotborealis/chen",
+    "node-pandoc": "^0.3.0"
+  }
+}
