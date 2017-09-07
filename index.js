@@ -8,6 +8,10 @@ const glob = require('glob');
 const gaze = require('gaze');
 const outputFilename = require('./lib/outputFilename');
 
+const file_extension_is = (filename, ext) => path.extname(filename) === '.' + ext;
+const ignore_ext_filter = (file) =>
+    !config.ignore_ext.reduce((bool, ext) => file_extension_is(file, ext) || bool, false);
+
 const build_file = (input) => {
     const file = path.isAbsolute(input) ? input : path.join(process.cwd(), input);
     const type = args.type || 'html';
@@ -16,9 +20,12 @@ const build_file = (input) => {
 };
 
 const build_glob = (patterns) =>
-    patterns.forEach(pattern =>
-        glob.sync(pattern).forEach(build_file)
-    );
+    patterns
+        .forEach(pattern =>
+            glob.sync(pattern)
+                .filter(ignore_ext_filter)
+                .forEach(build_file)
+        );
 
 const watch_glob = (pattern) => {
     gaze(pattern, function (err, watcher){
