@@ -1,9 +1,39 @@
-const args = require('chen.js').args;
 process.on('unhandledRejection', r => console.error(r));
+
+const config = require('./lib/config');
+const args = require('chen.js').args();
 const build = require('./lib/build');
+const path = require('path');
+const glob = require('glob');
+const gaze = require('gaze');
+const outputFilename = require('./lib/outputFilename');
 
-build('./test.md', null, 'html').then(console.log.bind(console));
+const build_file = (input) => {
+    const file = path.isAbsolute(input) ? input : path.join(process.cwd(), input);
+    const type = args.type || 'html';
+    const output = args.output || outputFilename(file, type);
+    build(file, output, type);
+};
 
-//if(args._.indexOf('watch') >= 0 || args.watch){
-//
-//}
+const build_glob = (patterns) =>
+    patterns.forEach(pattern =>
+        glob.sync(pattern).forEach(build_file)
+    );
+
+const watch_glob = (pattern) => {
+    gaze(pattern, function (err, watcher){
+        this.on('changed', build_file);
+        this.on('added', build_file);
+    });
+};
+
+const input_files = args._;
+
+if(input_files.length){
+    if(args.watch){
+
+    }
+    else{
+        build_glob(input_files);
+    }
+}
