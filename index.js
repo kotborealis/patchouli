@@ -13,6 +13,11 @@ const ignore_ext_filter = (file) =>
     !config.ignore_ext.reduce((bool, ext) => file_extension_is(file, ext) || bool, false);
 
 const build_file = (input) => {
+    console.log("WANNA BUILD", input);
+    if(!ignore_ext_filter(input)) return;
+
+    console.log("BUILD", input);
+
     const file = path.isAbsolute(input) ? input : path.join(process.cwd(), input);
     const type = args.type || 'html';
     const output = args.output || outputFilename(file, type);
@@ -27,18 +32,21 @@ const build_glob = (patterns) =>
                 .forEach(build_file)
         );
 
-const watch_glob = (pattern) => {
-    gaze(pattern, function (err, watcher){
-        this.on('changed', build_file);
-        this.on('added', build_file);
+const watch_glob = (patterns) => {
+    patterns.forEach(pattern => {
+        gaze(pattern, function(){
+            this.on('changed', build_file);
+            this.on('added', build_file);
+        });
     });
 };
 
 const input_files = args._;
 
 if(input_files.length){
-    if(args.watch){
-
+    if(args.w || args.watch){
+        build_glob(input_files);
+        watch_glob(input_files);
     }
     else{
         build_glob(input_files);
