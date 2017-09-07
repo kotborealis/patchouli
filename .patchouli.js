@@ -1,5 +1,6 @@
 module.exports = {
     ignore_ext: ['html', 'pdf'],
+    clean_ext: ['html', 'pdf'],
     default_pandoc: [
         '--smart',
         '--standalone',

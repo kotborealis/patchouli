@@ -7,6 +7,7 @@ const path = require('path');
 const glob = require('glob');
 const gaze = require('gaze');
 const outputFilename = require('./lib/outputFilename');
+const fs = require('fs');
 
 const file_extension_is = (filename, ext) => path.extname(filename) === '.' + ext;
 const ignore_ext_filter = (file) =>
@@ -15,6 +16,7 @@ const ignore_ext_filter = (file) =>
 const build_file = (input) => {
     if(!ignore_ext_filter(input)) return;
 
+    console.log("Building file ", input);
     const file = path.isAbsolute(input) ? input : path.join(process.cwd(), input);
     const type = args.type || args.t || 'html';
     const output = args.output || args.o || outputFilename(file, type);
@@ -40,12 +42,19 @@ const watch_glob = (patterns) => {
 
 const input_files = args._;
 
+if(args.clean || args.c){
+    console.log("Cleaning");
+    config.clean_ext.forEach(ext => glob.sync(`*.${ext}`).forEach(fs.unlinkSync.bind(fs)));
+}
+
 if(input_files.length){
     if(args.w || args.watch){
+        console.log("Watching files");
         build_glob(input_files);
         watch_glob(input_files);
     }
     else{
+        console.log("Building files");
         build_glob(input_files);
     }
 }
