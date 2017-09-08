@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 process.on('unhandledRejection', r => console.error(r));
 
 const config = require('./lib/config');
