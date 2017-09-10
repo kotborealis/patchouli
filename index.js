@@ -67,5 +67,3 @@ switch(true){
         break;
     }
 }
-
-//https://github.com/tapio/live-server
