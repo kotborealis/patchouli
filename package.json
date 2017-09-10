@@ -16,6 +16,7 @@
     "chen.js": "github:kotborealis/chen",
     "gaze": "^1.1.2",
     "glob": "^7.1.2",
+    "live-server": "^1.2.0",
     "node-pandoc": "^0.3.0"
   },
   "bin": {

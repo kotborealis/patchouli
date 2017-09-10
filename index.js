@@ -10,15 +10,8 @@ const glob = require('glob');
 const gaze = require('gaze');
 const outputFilename = require('./lib/outputFilename');
 const fs = require('fs');
-const md_only = require('./lib/md_only_filter')
-
-// glob.sync(pattern)
-/*
-gaze(pattern, function(){
-            this.on('changed', build_file);
-            this.on('added', build_file);
-        });
- */
+const md_only = require('./lib/md_only_filter');
+const liveServer = require("live-server");
 
 const build_file = file => {
     console.log("Building file ", file);
@@ -34,7 +27,8 @@ const markdown_files = args._
 
 const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 
-const act_watch = args.w || args.watch || args._.indexOf('watch') >= 0;
+const act_live  = args.l || args.live  || args._.indexOf('live')  >= 0;
+const act_watch = args.w || args.watch || args._.indexOf('watch') >= 0 || act_live;
 const act_clean = args.c || args.clean || args._.indexOf('clean') >= 0;
 const act_build = !act_watch && !act_clean;
 
@@ -47,6 +41,13 @@ switch(true){
         break;
     }
     case act_watch: {
+        if(act_live){
+            console.log("Starting live-server...");
+            liveServer.start({
+                port: config.port || undefined
+            });
+        }
+
         console.log("Building targets...");
         targets.forEach(build_file);
         console.log("Watching targets...");
