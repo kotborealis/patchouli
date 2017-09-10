@@ -60,3 +60,5 @@ if(input_files.length){
         build_glob(input_files);
     }
 }
+
+//https://github.com/tapio/live-server
