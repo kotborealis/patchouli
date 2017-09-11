@@ -13,6 +13,8 @@ const fs = require('fs');
 const md_only = require('./lib/md_only_filter');
 const liveServer = require("live-server");
 
+const patchouly_root = path.dirname(require.resolve('./'));
+
 const build_file = file => {
     console.log("Building file ", file);
     build(file, outputFilename(file, type), type);
@@ -44,7 +46,11 @@ switch(true){
         if(act_live){
             console.log("Starting live-server...");
             liveServer.start({
-                port: config.port || undefined
+                port: config.port || undefined,
+                mount: [
+                    ['/resources', path.join(patchouly_root, './resources')],
+                    ['/mathjax', path.join(path.dirname(require.resolve('mathjax')), '..')],
+                ]
             });
         }
 
