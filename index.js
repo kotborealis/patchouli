@@ -59,7 +59,7 @@ switch(true){
         console.log("Watching targets...");
         gaze(targets, function(){
             this.on('changed', file =>
-                setTimeout(() => build_file(file), 200)
+                setTimeout(() => build_file(file), 400)
             );
         });
         break;
