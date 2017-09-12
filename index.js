@@ -17,7 +17,7 @@ const patchouly_root = path.dirname(require.resolve('./'));
 
 const build_file = file => {
     console.log("Building file ", file);
-    build(file, outputFilename(file, type), type);
+    build(file, outputFilename(file, type), type, mode);
 };
 
 const to_plain_array = (a, b) => [...a, ...b];
@@ -35,14 +35,17 @@ const act_clean = args.c || args.clean || args._.indexOf('clean') >= 0;
 const act_build = !act_watch && !act_clean;
 
 const type = args.type || args.t || 'html';
+const mode = (act_live || act_watch) ? 'live' : 'release';
 
 switch(true){
     case act_build: {
+        console.log("Mode: ", mode);
         console.log("Building targets...");
         targets.forEach(build_file);
         break;
     }
     case act_watch: {
+        console.log("Mode: ", mode);
         if(act_live){
             console.log("Starting live-server...");
             liveServer.start({
