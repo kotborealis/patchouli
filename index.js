@@ -31,7 +31,7 @@ const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 
 const act_live  = args.l || args.live  || args._.indexOf('live')  >= 0;
 const act_watch = args.w || args.watch || args._.indexOf('watch') >= 0 || act_live;
-const act_clean = args.c || args.clean || args._.indexOf('clean') >= 0;
+const act_clean = args.c || args.clean || args._.indexOf('clean') >= 0 || act_live;
 const act_build = !act_watch && !act_clean;
 
 const type = args.type || args.t || 'html';
@@ -76,3 +76,16 @@ switch(true){
         break;
     }
 }
+
+const cleanup = () => {
+    if(!act_clean) return;
+    console.log("Cleaning...");
+    targets
+        .map(target => config.clean_ext.map(ext => outputFilename(target, ext)))
+        .reduce(to_plain_array)
+        .forEach(file => fs.unlink(file, () => null));
+    process.exit();
+};
+
+process.on('exit', cleanup);
+process.on('SIGINT', cleanup);
