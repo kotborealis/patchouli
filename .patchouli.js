@@ -36,7 +36,6 @@ module.exports = {
         `-H`, path.join(patchouly_root, 'resources', 'mathjax.html')
     ],
     default_pdf: [
-        `--filter=${path.join(patchouly_root, 'scripts', './pandoc-svg.py')}`,
         `--template=${path.join(patchouly_root, 'resources', './default.latex')}`
     ],
 
