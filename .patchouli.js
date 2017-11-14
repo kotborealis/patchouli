@@ -28,14 +28,14 @@ module.exports = {
     default_pandoc: [
         '--smart',
         '--standalone',
-        '--toc'
+        '--toc',
+        `--filter`, `pandoc-crossref`,
+        `--filter`, `pandoc-include-code`
     ],
     default_html: [
         `--to`,
         `html5`,
         `-H`, path.join(patchouly_root, 'resources', 'mathjax.html'),
-        `--filter`, `pandoc-crossref`,
-        `--filter`, `pandoc-include-code`,
     ],
     default_pdf: [
         `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
@@ -43,9 +43,7 @@ module.exports = {
         `--latex-engine=xelatex`,
         `--variable`, 'mainfont="CMU Serif"',
         `--variable`, 'sansfont="CMU Sans Serif"',
-        `--variable`, `monofont="CMU Typewriter Text"`,
-        `--filter`, `pandoc-crossref`,
-        `--filter`, `pandoc-include-code`
+        `--variable`, `monofont="CMU Typewriter Text"`
     ],
 
     pandoc: [],
