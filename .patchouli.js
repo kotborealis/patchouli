@@ -38,9 +38,10 @@ module.exports = {
         `-H`, path.join(patchouly_root, 'resources', 'mathjax.html'),
     ],
     default_pdf: [
+        `-V`, `lang=ru`,
+        `-V`, `otherlang=en`,
         `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
         `--filter=${path.join(patchouly_root, 'scripts', './pandoc-svg.py')}`,
-        `--latex-engine=xelatex`,
         `--variable`, 'mainfont="CMU Serif"',
         `--variable`, 'sansfont="CMU Sans Serif"',
         `--variable`, `monofont="CMU Typewriter Text"`
