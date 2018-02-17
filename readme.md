@@ -6,7 +6,7 @@ Pandoc wrapper
 
 ```
 # Build docker image (VERY slow, ~3.66gb)
-docker build . -t patchouli-pandoc:latest
+npm run-script build
 # Install wrapper
 npm i -g .
 ```

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "docker build . -t patchouli-pandoc:latest"
   },
   "author": "",
   "license": "ISC",
