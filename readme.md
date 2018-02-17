@@ -34,3 +34,11 @@ patchouli clean
 * [pandoc-svg](https://gist.github.com/jeromerobert/3996eca3acd12e4c3d40)
 * [pandoc-crossref](http://lierdakil.github.io/pandoc-crossref/)
 * [pandoc-include-code](https://github.com/owickstrom/pandoc-include-code)
+
+## Configuration
+
+This wrapper loads the following configs in the same order and combines them using deep-merge:
+
+* `.../patchouli/.patchouli.js`
+* `~/.patchouli.js`
+* `$PWD/.patchouli.js`
