@@ -33,6 +33,7 @@ module.exports = {
         `-f`, `markdown+smart`,
         '--standalone',
         '--toc',
+        '--quiet',
         `--filter`, `pandoc-crossref`,
         `--filter`, `pandoc-include-code`
     ],
