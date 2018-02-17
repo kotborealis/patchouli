@@ -5,39 +5,24 @@ Pandoc wrapper
 ## Installation
 
 ```
-// first of, install haskell platform
-// pandoc 1.19.2.3 (2.0.0 not working yet)
-sudo apt install pandoc // !!! 1.19.2.3 !!!
-// pandoc filters
-sudo pip install pandocfilters
-cabal install pandoc-crossref
-cabal install pandoc-include-code
-// fonts
-sudo apt install fonts-cmu
-// patchouli
-npm i -g patchouli
+# Build docker image (VERY slow, ~3.66gb)
+docker build . -t patchouli-pandoc:latest
+# Install wrapper
+npm i -g .
 ```
 
 ## Usage
 
-Examples:
-
-Compile file to html:
 ```
+# Compile file to html:
 patchouli file.md
-```
 
-Compile file to pdf:
-```
+# Compile file to pdf:
 patchouli file.md --type pdf
-```
 
-Live editing:
-```
+# Live reload:
 patchouli live file.md
-```
 
-Clean all generated pdf/html files:
-```
+# Clean all generated pdf/html files:
 patchouli clean
 ```
