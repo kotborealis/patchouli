@@ -28,3 +28,9 @@ patchouli live file.md
 # Clean all generated pdf/html files:
 patchouli clean
 ```
+
+## Included filters
+
+* [pandoc-svg](https://gist.github.com/jeromerobert/3996eca3acd12e4c3d40)
+* [pandoc-crossref](http://lierdakil.github.io/pandoc-crossref/)
+* [pandoc-include-code](https://github.com/owickstrom/pandoc-include-code)
