@@ -4,7 +4,7 @@ const patchouly_root = "/opt/src";
 console.log(path.join(patchouly_root, 'resources', './default.latex'));
 
 module.exports = {
-    pandoc_path: `docker run -v ${process.cwd()}:/source patchouli-pandoc:latest`,
+    pandoc_path: `docker run -v ${process.cwd()}:/source --rm patchouli-pandoc:latest`,
 
     ignore_ext: ['html', 'pdf'],
     clean_ext: ['html', 'pdf'],
