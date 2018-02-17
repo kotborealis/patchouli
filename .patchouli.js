@@ -1,7 +1,11 @@
 const path = require('path');
-const patchouly_root = path.dirname(require.resolve('./'));
+const patchouly_root = "/opt/src";
+
+console.log(path.join(patchouly_root, 'resources', './default.latex'));
 
 module.exports = {
+    pandoc_path: `docker run -v ${process.cwd()}:/source patchouli-pandoc:latest`,
+
     ignore_ext: ['html', 'pdf'],
     clean_ext: ['html', 'pdf'],
 
@@ -26,7 +30,7 @@ module.exports = {
     },
 
     default_pandoc: [
-        '--smart',
+        `-f`, `markdown+smart`,
         '--standalone',
         '--toc',
         `--filter`, `pandoc-crossref`,
@@ -40,7 +44,7 @@ module.exports = {
     default_pdf: [
         `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
         `--filter=${path.join(patchouly_root, 'scripts', './pandoc-svg.py')}`,
-        `--latex-engine=xelatex`,
+        `--pdf-engine=xelatex`,
         `--variable`, 'mainfont="CMU Serif"',
         `--variable`, 'sansfont="CMU Sans Serif"',
         `--variable`, `monofont="CMU Typewriter Text"`
