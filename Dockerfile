@@ -40,6 +40,10 @@ RUN apt-get install -y ttf-mscorefonts-installer
 # install texlive russian
 RUN apt-get install texlive-lang-cyrillic 
 
+# https://jdhao.github.io/2017/03/06/Windows-xelatex-slow/
+RUN fc-cache -r -v
+RUN updmap
+
 # add cabal bin to path
 ENV PATH="/root/.cabal/bin:${PATH}"
 
