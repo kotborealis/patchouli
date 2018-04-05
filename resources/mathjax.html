@@ -1,6 +1,14 @@
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   "fast-preview": {disabled: true},
-  tex2jax: {preview: "none"}
+  tex2jax: {preview: "none"},
+  displayAlign: "left",
+  positionToHash: true
+});
+MathJax.Hub.Register.StartupHook("End", () => {
+    window.scroll({
+        top: document.body.scrollHeight, 
+        behavior: 'smooth' 
+    });
 });
 </script>
