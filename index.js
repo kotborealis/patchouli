@@ -48,7 +48,9 @@ switch(true){
         console.log("Mode: ", mode);
         if(act_live){
             console.log("Starting live-server...");
+            console.log("Ignore", targets.map(i => path.join(process.cwd(),i)).join(','))
             liveServer.start({
+                ignore: targets.map(i => path.join(process.cwd(),i)).join(','),
                 port: config.port || undefined,
                 mount: [
                     ['/resources', path.join(patchouly_root, './resources')],

@@ -3,7 +3,11 @@ MathJax.Hub.Config({
   "fast-preview": {disabled: true},
   tex2jax: {preview: "none"},
   displayAlign: "left",
-  positionToHash: true
+  positionToHash: true,
+  SVG: {
+    useFontCache: true,
+    useGlobalCache: true,
+  }
 });
 MathJax.Hub.Register.StartupHook("End", () => {
     window.scroll({
