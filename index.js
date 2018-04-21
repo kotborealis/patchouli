@@ -1,93 +1,58 @@
 #! /usr/bin/env node
 
-process.on('unhandledRejection', r => console.error(r));
-
-const config = require('./lib/config');
 const args = require('chen.js').args();
 const build = require('./lib/build');
-const path = require('path');
 const glob = require('glob');
-const gaze = require('gaze');
 const outputFilename = require('./lib/outputFilename');
-const fs = require('fs');
 const md_only = require('./lib/md_only_filter');
-const liveServer = require("live-server");
-
-const patchouly_root = path.dirname(require.resolve('./'));
+const commands = require('./lib/commands');
 
 const build_file = file => {
     console.log("Building file ", file);
     build(file, outputFilename(file, type), type, mode);
 };
 
-const to_plain_array = (a, b) => [...a, ...b];
-
 const markdown_files = args._
     .map(pattern => glob.sync(pattern))
-    .reduce(to_plain_array, [])
+    .reduce((a, b) => a.concat(b), [])
     .filter(md_only);
 
 const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 
-const act_live  = args.l || args.live  || args._.indexOf('live')  >= 0;
-const act_watch = args.w || args.watch || args._.indexOf('watch') >= 0 || act_live;
-const act_clean = args.c || args.clean || args._.indexOf('clean') >= 0 || act_live;
-const act_build = !act_watch && !act_clean;
+if(!args._[0]){
+    console.log('asdad"');
+    args._[0] = "*";
+}
+
+const act_live  = args.l || args.live  || args._[0][0] === 'l';
+const act_watch = args.w || args.watch || args._[0][0] === 'w' || act_live;
+const act_clean = args.c || args.clean || args._[0][0] === 'c' || act_live;
 
 const type = args.type || args.t || 'html';
 const mode = (act_live || act_watch) ? 'live' : 'release';
 
-switch(true){
-    case act_build: {
-        console.log("Mode: ", mode);
-        console.log("Building targets...");
-        targets.forEach(build_file);
-        break;
-    }
-    case act_watch: {
-        console.log("Mode: ", mode);
-        if(act_live){
-            console.log("Starting live-server...");
-            console.log("Ignore", targets.map(i => path.join(process.cwd(),i)).join(','))
-            liveServer.start({
-                ignore: targets.map(i => path.join(process.cwd(),i)).join(','),
-                port: config.port || undefined,
-                mount: [
-                    ['/resources', path.join(patchouly_root, './resources')],
-                    ['/mathjax', path.join(path.dirname(require.resolve('mathjax')), '..')],
-                ]
-            });
-        }
+console.log("Mode: ", mode);
 
-        console.log("Building targets...");
-        targets.forEach(build_file);
-        console.log("Watching targets...");
-        gaze(targets, function(){
-            this.on('changed', file =>
-                setTimeout(() => build_file(file), 400)
-            );
-        });
-        break;
-    }
-    case act_clean: {
-        console.log("Cleaning...");
-        targets
-            .map(target => config.clean_ext.map(ext => outputFilename(target, ext)))
-            .reduce(to_plain_array)
-            .forEach(file => fs.unlink(file, () => null));
-        break;
-    }
+if(args.l || args.live || args._[0] === 'live'){
+    commands.handlers[commands.act.build]({mode, type}, targets);
+    commands.handlers[commands.act.live ]({mode, type}, targets);
+    commands.handlers[commands.act.watch]({mode, type}, targets);
+
+    process.on('exit', commands.cleanup.bind(null, {mode, type}, targets));
+    process.on('SIGINT', commands.cleanup.bind(null, {mode, type}, targets));
+}
+else if(args.w || args.watch || args._[0]=== 'watch'){
+    commands.handlers[commands.act.build]({mode, type}, targets);
+    commands.handlers[commands.act.watch]({mode, type}, targets);
+
+    process.on('exit', commands.cleanup.bind(null, {mode, type}, targets));
+    process.on('SIGINT', commands.cleanup.bind(null, {mode, type}, targets));
+}
+else if(args.c || args.clean || args._[0] === 'clean'){
+    commands.cleanup({mode, type}, targets);
+}
+else{
+    commands.handlers[commands.act.build]({mode, type}, targets);
 }
 
-const cleanup = () => {
-    if(!act_clean) return;
-    console.log("Cleaning...");
-    targets
-        .map(target => config.clean_ext.map(ext => outputFilename(target, ext)))
-        .reduce(to_plain_array)
-        .forEach(file => fs.unlink(file, () => null));
-    process.exit();
-};
-
-process.on('exit', cleanup);
-process.on('SIGINT', cleanup);
+process.on('unhandledRejection', r => console.error(r));
