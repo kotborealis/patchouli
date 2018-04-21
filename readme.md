@@ -65,3 +65,7 @@ This wrapper loads the following configs in the same order and combines them usi
 * `--concat=[build.md]` --- concat files into specified file and then compile it
 * `--keep-concat` --- keep concatenated file
 * `--keep-tex` --- keep tex file
+
+## Init
+
+`patchouli init` let's you init project with some of the files from `resources`. This needs to be reworked a bit.
