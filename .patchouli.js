@@ -2,8 +2,7 @@ const path = require('path');
 const patchouly_root = "/opt/src";
 
 let config = {
-    docker_cmd: `docker run -v ${process.cwd()}:/source --rm patchouli-pandoc:latest`,
-
+    pandoc_path: `docker run -v ${process.cwd()}:/source --rm patchouli-pandoc:latest`,
     pdf_engine: 'xelatex',
 
     ignore_ext: ['html', 'pdf'],
@@ -50,21 +49,17 @@ let config = {
         `--variable`, `monofont="CMU Typewriter Text"`
     ],
 
+    default_pdf: [
+        `--interaction=batchmode`
+    ],
+
     pandoc: [],
     html: [],
     pdf: []
 };
 
-// props that reference the config
 config = Object.assign(config, {
-    pandoc_path: config.docker_cmd,
-
-    pdf_engine_path: `${config.docker_cmd} --entrypoint "${config.pdf_engine}"`,
-
-    default_pdf: [
-        ...config.default_tex,
-        `--pdf-engine=${config.pdf_engine}`
-    ],
+    pdf_engine_path: `docker run -v ${process.cwd()}:/source  --entrypoint "${config.pdf_engine}" --rm patchouli-pandoc:latest`,
 });
 
 module.exports = config;
