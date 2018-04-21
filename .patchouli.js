@@ -62,7 +62,9 @@ let config = {
 
     pandoc: [],
     html: [],
-    pdf: []
+    pdf: [],
+
+    args: {}
 };
 
 config = Object.assign(config, {
