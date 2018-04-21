@@ -2,8 +2,6 @@ const path = require('path');
 const patchouly_root = "/opt/src";
 
 let config = {
-    pdf_engine: 'xelatex',
-
     docker: {
         mount_cwd: `-v ${process.cwd()}:/source`,
         mount_tmp: `-v /tmp:/tmp`,
@@ -53,9 +51,13 @@ let config = {
         `--variable`, 'sansfont="CMU Sans Serif"',
         `--variable`, `monofont="CMU Typewriter Text"`
     ],
-
     default_pdf: [
-        `-quiet`
+        `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
+        `--filter=${path.join(patchouly_root, 'scripts', './pandoc-svg.py')}`,
+        `--variable`, 'mainfont="CMU Serif"',
+        `--variable`, 'sansfont="CMU Sans Serif"',
+        `--variable`, `monofont="CMU Typewriter Text"`,
+        `--pdf-engine=xelatex`
     ],
 
     pandoc: [],
@@ -64,11 +66,6 @@ let config = {
 };
 
 config = Object.assign(config, {
-    pdf_engine_path: `docker run 
-        ${config.docker.mount_cwd} 
-        ${config.docker.mount_tmp} 
-        --entrypoint "${config.pdf_engine}" 
-        ${config.docker.image}`.replace(/\n/g, ''),
     pandoc_path: `docker run 
         ${config.docker.mount_cwd} 
         ${config.docker.mount_tmp} 
