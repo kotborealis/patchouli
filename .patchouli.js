@@ -35,7 +35,6 @@ let config = {
         `-f`, `markdown+smart`,
         '--standalone',
         '--toc',
-        '--quiet',
         `--filter`, `pandoc-crossref`,
         `--filter`, `pandoc-include-code`
     ],

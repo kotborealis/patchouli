@@ -18,7 +18,7 @@ header-includes:
   - \captionsetup[figure]{name=Рис.}
   - \captionsetup[table]{name=Табл.}
 include-before:
-  - \IfFileExists{./title.pdf}{\includepdf[pages=-]{title.pdf}}{}
+  - \IfFileExists{./title.pdf}{\includepdf[width=\paperwidth,height=\paperheight,pages=-]{title.pdf}}{}
 eqnPrefix:
   - "ур."
   - "ур."
