@@ -61,10 +61,11 @@ This wrapper loads the following configs in the same order and combines them usi
 * `live` --- run live-server and watch files
 * `watch` --- watch files
 * `clean` --- remove output files
-* `--type=?` --- specify output type (html, pdf, tex, docx)
-* `--concat=[build.md]` --- concat files into specified file and then compile it
+* `--type=html` --- specify output type (html, pdf, tex, docx)
+* `--concat=build.md` --- concat files into specified file and then compile it
 * `--keep-concat` --- keep concatenated file
 * `--keep-tex` --- keep tex file
+* `--pandoc-*=?` --- pass `--*=?` argument to pandoc
 
 ## Init
 
