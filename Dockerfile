@@ -29,8 +29,8 @@ RUN cabal update
 RUN cabal install pandoc-${PANDOC_VERSION}
 
 # install pandoc filters
-RUN cabal install pandoc-crossref
-RUN cabal install pandoc-include-code
+RUN cabal install pandoc-crossref --force-reinstalls
+RUN cabal install pandoc-include-code --force-reinstalls
 
 # install times new roman
 RUN echo "deb http://http.us.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list
