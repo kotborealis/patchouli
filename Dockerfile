@@ -52,6 +52,12 @@ COPY . .
 
 WORKDIR /source
 
+# update pandoc
+ENV PANDOC_VERSION "2.2.1"
+
+RUN cabal update
+RUN cabal install pandoc-${PANDOC_VERSION}
+
 ENTRYPOINT ["/root/.cabal/bin/pandoc"]
 
 CMD ["--help"]
