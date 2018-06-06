@@ -233,6 +233,17 @@ $if(institute)$
 $endif$
 \date{$date$}
 
+$if(figure_H)$
+\usepackage{float}
+\let\origfigure=\figure
+\let\endorigfigure=\endfigure
+\renewenvironment{figure}[1][]{%
+\origfigure[H]
+}{%
+\endorigfigure
+}
+$endif$
+
 \begin{document}
 $if(title)$
 \maketitle

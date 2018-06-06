@@ -70,3 +70,9 @@ This wrapper loads the following configs in the same order and combines them usi
 ## Init
 
 `patchouli init` let's you init project with some of the files from `resources`. This needs to be reworked a bit.
+
+## Default template
+
+### yaml options
+
+* `figure_H: true` --- adds `[H]` param to figures to keep them in place
