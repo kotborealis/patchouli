@@ -244,6 +244,31 @@ $if(figure_H)$
 }
 $endif$
 
+% My settings
+\usepackage{caption}
+\usepackage{mathtools}
+\usepackage{pdfpages}
+\usepackage{amsthm}
+
+% Theorems, proofs, etc
+
+\newtheorem{theorem}{Теорема}[section]
+
+\newtheorem{corollary}{Следствие}[theorem]
+
+\newtheorem{lemma}[theorem]{Лемма}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Примечание}
+
+% ----
+
+\captionsetup[figure]{name=Рис.}
+\captionsetup[table]{name=Табл.}
+
 \begin{document}
 $if(title)$
 \maketitle

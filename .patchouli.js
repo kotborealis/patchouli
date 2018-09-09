@@ -32,7 +32,7 @@ let config = {
     },
 
     default_pandoc: [
-        `-f`, `markdown+smart+fancy_lists`,
+        `-f`, `markdown+smart+fancy_lists+raw_tex`,
         '--standalone',
         '--toc',
         `--filter`, `pandoc-crossref`,
