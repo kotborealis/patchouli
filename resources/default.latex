@@ -251,19 +251,18 @@ $endif$
 \usepackage{amsthm}
 
 % Theorems, proofs, etc
-
+$if(numbersections)$
 \newtheorem{theorem}{Теорема}[section]
-
 \newtheorem{corollary}{Следствие}[theorem]
-
 \newtheorem{lemma}[theorem]{Лемма}
-
-\theoremstyle{definition}
-\newtheorem{definition}{Определение}[section]
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Примечание}
-
+\theoremstyle{definition}\newtheorem{definition}{Определение}[section]
+$else$
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\theoremstyle{definition}\newtheorem{definition}{Определение}
+$endif$
+\theoremstyle{remark}\newtheorem*{remark}{Примечание}
 % ----
 
 \captionsetup[figure]{name=Рис.}
