@@ -265,8 +265,21 @@ $endif$
 \theoremstyle{remark}\newtheorem*{remark}{Примечание}
 % ----
 
+% equation numbering
+\numberwithin{equation}{section}
+
 \captionsetup[figure]{name=Рис.}
 \captionsetup[table]{name=Табл.}
+
+% commands
+\newcommand{\locmin}{\operatorname{locmin}}
+\newcommand{\locmax}{\operatorname{locmax}}
+\newcommand{\absmin}{\operatorname{absmin}}
+\newcommand{\absmax}{\operatorname{absmax}}
+\newcommand{\locextr}{\operatorname{locmax}}
+\newcommand{\extr}{\operatorname{extr}}
+\newcommand{\ohat}[1]{\hat{\overline{#1}}}
+\newcommand{\dpartial}[2]{\dfrac{\partial #1}{\partial #2}}
 
 \begin{document}
 $if(title)$
