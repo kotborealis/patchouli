@@ -280,6 +280,7 @@ $endif$
 \newcommand{\extr}{\operatorname{extr}}
 \newcommand{\ohat}[1]{\hat{\overline{#1}}}
 \newcommand{\dpartial}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\grad}{\operatorname{grad}}
 
 \begin{document}
 $if(title)$
