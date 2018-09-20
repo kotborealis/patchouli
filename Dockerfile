@@ -1,7 +1,7 @@
 FROM haskell:8.0
 
-# Install thingies from apt
-RUN apt-get update -y \
+RUN echo "deb http://http.us.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list && \
+  apt-get update -y \
   && apt-get install -y -o Acquire::Retries=10 --no-install-recommends \
     texlive-latex-base \
     texlive-xetex latex-xcolor \
@@ -11,13 +11,13 @@ RUN apt-get update -y \
     texlive-bibtex-extra \
     fontconfig \
     lmodern \
-    fonts-cmu
-
-# install pip
-RUN apt-get install -y python-pip
-
-# install utils
-RUN apt-get install -y curl unzip
+    fonts-cmu \
+    python-pip \
+    curl \
+    unzip \
+    ttf-mscorefonts-installer \
+    texlive-lang-cyrillic \
+    && rm -rf /var/lib/apt/lists/*
 
 # install pandocfilters for python
 RUN pip install pandocfilters
@@ -25,24 +25,13 @@ RUN pip install pandocfilters
 #install pandoc
 ENV PANDOC_VERSION "2.2.1"
 
-RUN cabal update
-RUN cabal install pandoc-${PANDOC_VERSION}
-
-# install pandoc filters
-RUN cabal install pandoc-crossref --force-reinstalls
-RUN cabal install pandoc-include-code --force-reinstalls
-
-# install times new roman
-RUN echo "deb http://http.us.debian.org/debian jessie main contrib non-free" >> /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y ttf-mscorefonts-installer
-
-# install texlive russian
-RUN apt-get install texlive-lang-cyrillic 
+RUN cabal update && \
+    cabal install pandoc-${PANDOC_VERSION} && \
+    cabal install pandoc-crossref --force-reinstalls && \
+    cabal install pandoc-include-code --force-reinstalls
 
 # https://jdhao.github.io/2017/03/06/Windows-xelatex-slow/
-RUN fc-cache -r -v
-RUN updmap
+RUN fc-cache -r -v && updmap
 
 # add cabal bin to path
 ENV PATH="/root/.cabal/bin:${PATH}"
@@ -51,7 +40,6 @@ WORKDIR /opt/src
 COPY . .
 
 WORKDIR /source
-
 
 ENTRYPOINT ["/root/.cabal/bin/pandoc"]
 
