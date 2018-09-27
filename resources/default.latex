@@ -249,12 +249,14 @@ $endif$
 \usepackage{mathtools}
 \usepackage{pdfpages}
 \usepackage{amsthm}
+\usepackage{unicode-math}
 
 % Theorems, proofs, etc
 $if(numbersections)$
 \newtheorem{theorem}{Теорема}[section]
 \newtheorem{corollary}{Следствие}[theorem]
 \newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{statement}[theorem]{Утверждение}
 \theoremstyle{definition}\newtheorem{definition}{Определение}[section]
 $else$
 \newtheorem{theorem}{Теорема}
@@ -281,6 +283,7 @@ $endif$
 \newcommand{\ohat}[1]{\hat{\overline{#1}}}
 \newcommand{\dpartial}[2]{\dfrac{\partial #1}{\partial #2}}
 \newcommand{\grad}{\operatorname{grad}}
+\newcommand{\epi}{\operatorname{epi}}
 
 \begin{document}
 $if(title)$
