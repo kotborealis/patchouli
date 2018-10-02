@@ -250,6 +250,8 @@ $endif$
 \usepackage{pdfpages}
 \usepackage{amsthm}
 \usepackage{unicode-math}
+\usepackage{unicode-math}
+\usepackage{/opt/src/resources/karnaugh-map}
 
 % Theorems, proofs, etc
 $if(numbersections)$
