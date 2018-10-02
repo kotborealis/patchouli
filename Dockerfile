@@ -30,8 +30,7 @@ RUN cabal update && \
     cabal install pandoc-crossref --force-reinstalls && \
     cabal install pandoc-include-code --force-reinstalls
 
-# https://jdhao.github.io/2017/03/06/Windows-xelatex-slow/
-RUN fc-cache -r -v && updmap
+RUN fc-cache --force --really-force --verbose
 
 # add cabal bin to path
 ENV PATH="/root/.cabal/bin:${PATH}"
