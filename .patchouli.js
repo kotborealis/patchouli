@@ -5,7 +5,7 @@ let config = {
     docker: {
         mount_cwd: `-v ${process.cwd()}:/source`,
         mount_tmp: `-v /tmp:/tmp`,
-        image: ` --rm patchouli-pandoc:latest`,
+        image: ` --rm kotborealis/patchouli:latest`,
     },
 
     ignore_ext: ['html', 'pdf'],

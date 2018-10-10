@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "build": "docker build . -t patchouli-pandoc:latest"
+    "build": "docker build . -t kotborealis/patchouli:latest",
+    "pull": "docker pull kotborealis/patchouli:latest",
+    "push": "docker push kotborealis/patchouli:latest"
   },
   "author": "",
   "license": "ISC",
