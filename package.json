@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "build": "docker build . -t kotborealis/patchouli:latest",
-    "pull": "docker pull kotborealis/patchouli:latest",
-    "push": "docker push kotborealis/patchouli:latest"
+    "docker-build": "docker build . -t kotborealis/patchouli:latest",
+    "docker-pull": "docker pull kotborealis/patchouli:latest",
+    "docker-push": "docker push kotborealis/patchouli:latest",
+    "build": "npm run docker-build",
+    "preinstall": "npm run docker-pull",
+    "prepublishOnly": "npm run docker-build && npm run docker-push"
   },
   "author": "",
   "license": "ISC",
