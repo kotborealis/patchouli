@@ -4,13 +4,18 @@
 
 Pandoc wrapper
 
+## Dependencies
+
+* Node 8.0+
+* NPM
+* Docker
+
 ## Installation
 
+Following command will also download docker image (about 3.3GB).
+
 ```
-# Build docker image (VERY slow, ~3.66gb)
-npm run-script build
-# Install wrapper
-npm i -g .
+npm i kotborealis/patchouli
 ```
 
 ## Usage
@@ -34,8 +39,8 @@ patchouli clean
 
 Concat files
 ```
- writing/s6/na_lab4 ls
-00_header.md  01_tasks.md  02_theory.md  03_task1.md  04_task2.md  05_task3.md  99_appendix.md
+ writing/task ls
+00_header.md  01_tasks.md  02_task1.md  03_task2.md  04_task3.md  99_appendix.md
 ```
 
 Command `patchouli --concat=build.md` will concatenate all `.md` files into `build.md` and compile it to `build.pdf`, removing
@@ -56,6 +61,8 @@ This wrapper loads the following configs in the same order and combines them usi
 * `~/.patchouli.js`
 * `$PWD/.patchouli.js`
 
+**TODO: More about configs.**
+
 ## Arguments
 
 * `live` --- run live-server and watch files
@@ -66,10 +73,6 @@ This wrapper loads the following configs in the same order and combines them usi
 * `--keep-concat` --- keep concatenated file
 * `--keep-tex` --- keep tex file
 * `--pandoc-*=?` --- pass `--*=?` argument to pandoc
-
-## Init
-
-`patchouli init` let's you init project with some of the files from `resources`. This needs to be reworked a bit.
 
 ## Default template
 
