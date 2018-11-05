@@ -1,6 +1,6 @@
 {
   "name": "@kotborealis/patchouli",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,8 @@
   },
   "author": "patchouli@awooo.ru",
   "repository": {
-        "type": "git",
-        "url": "https://github.com/kotborealis/patchouli.git"
+    "type": "git",
+    "url": "https://github.com/kotborealis/patchouli.git"
   },
   "license": "ISC",
   "devDependencies": {
