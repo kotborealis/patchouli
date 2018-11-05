@@ -55,7 +55,7 @@ let config = {
         `--variable`, 'mainfont="CMU Serif"',
         `--variable`, 'sansfont="CMU Sans Serif"',
         `--variable`, `monofont="CMU Typewriter Text"`,
-        `--pdf-engine=pdflatex`
+        `--pdf-engine=xelatex`
     ],
 
     pandoc: [],
