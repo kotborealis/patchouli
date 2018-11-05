@@ -7,17 +7,11 @@ RUN apt-get update -y \
     texlive-latex-base \
     texlive-math-extra \
     texlive-latex-extra \
-    latex-xcolor \
-    fontconfig \
-    lmodern \
-    fonts-cmu \
-    curl \
-    unzip \
-    ttf-mscorefonts-installer \
     texlive-lang-cyrillic \
+    latex-xcolor \
+    fonts-cmu \
+    lmodern \
     && rm -rf /var/lib/apt/lists/*
-
-RUN fc-cache --force --really-force --verbose
 
 #install pandoc
 ADD ./pandoc-build/pandoc.tar /root/.cabal/bin/
