@@ -4,7 +4,7 @@ const config = require('./lib/config');
 const glob = require('glob');
 const md_only = require('./lib/md_only_filter');
 const build_document = require('./lib/build_document');
-const cleanup = require('./lib/cleanup');
+const unlink = require('./lib/unlink');
 
 const markdown_files = config.args._
     .map(pattern => glob.sync(pattern))
@@ -15,8 +15,19 @@ const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 
 const type = config.args.type || config.args.t || 'pdf';
 
-build_document(type, targets).then(({document_path, concat_path, tex_path}) =>
-    cleanup([...concat_path, ...tex_path])
-).catch();
+build_document(type, targets).then(({document_path, concat_path, tex_path}) => {
+    if(!config.args['keep-sources'])
+        unlink([concat_path, tex_path]);
 
-process.on('unhandledRejection', r => console.error(r));
+    process.exit(0);
+}).catch(r   => {
+    console.log(r);
+
+    process.exit(1);
+});
+
+process.on('unhandledRejection', r => {
+    console.error(r);
+
+    process.exit(1);
+});

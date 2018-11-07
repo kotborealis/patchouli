@@ -21,25 +21,15 @@ npm i kotborealis/patchouli
 ## Usage
 
 ```
-# Compile file to pdf:
-patchouli file.md
+# Concat and compile all .md files in current directory to pdf:
+patchouli
 
-# Compile file to html:
-patchouli file.md --type html
+# # Concat and compile all .md files in current directory to html:
+patchouli --type html
 
-# Compile file to docx
-patchouli file.md --type=docx
+# # Concat and compile all .md files in current directory to docx:
+patchouli --type=docx
 ```
-
-Concat files
-```
- writing/task ls
-00_header.md  01_tasks.md  02_task1.md  03_task2.md  04_task3.md  99_appendix.md
-```
-
-Command `patchouli --concat=build.md` will concatenate all `.md` files into `build.md` and compile it to `build.pdf`, removing
-`build.md` afterwards.
-Pass `--keep-concat` if you want to keep this file.
 
 ## Included filters
 
