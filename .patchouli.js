@@ -11,26 +11,6 @@ let config = {
     ignore_ext: ['html', 'pdf'],
     clean_ext: ['html', 'pdf'],
 
-    live: {
-        html: [
-            '--mathjax=/mathjax/MathJax.js?config=TeX-AMS_CHTML-full,local/local',
-            '-c', '/resources/pandoc.css'
-        ],
-        pdf: [
-
-        ]
-    },
-
-    release: {
-        html: [
-            '--mathjax',
-            '-H', path.join(patchouly_root, 'resources', 'pandoc.css.html')
-        ],
-        pdf: [
-
-        ]
-    },
-
     default_pandoc: [
         `-f`, `markdown+smart+fancy_lists+raw_tex`,
         '--standalone',
@@ -38,6 +18,7 @@ let config = {
         `--filter`, `pandoc-crossref`,
         `--filter`, `pandoc-include-code`
     ],
+
     default_html: [
         `--to`,
         `html5`,
@@ -45,7 +26,6 @@ let config = {
     ],
     default_tex: [
         `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
-        `--filter=${path.join(patchouly_root, 'scripts', './pandoc-svg.py')}`,
         `--variable`, 'mainfont="CMU Serif"',
         `--variable`, 'sansfont="CMU Sans Serif"',
         `--variable`, `monofont="CMU Typewriter Text"`
