@@ -1,9 +1,11 @@
 ---
+numbersections: true
+toc: true
 lang: ru
 papersize: a4
-documentclass: article
-geometry: margin=2.54cm
-fontsize: 14pt
+documentclass: extarticle
+geometry: margin=2cm
+fontsize: 12pt
 figPrefix: "рис. "
 fontfamilies:
 - name: \cyrillicfont
@@ -12,11 +14,7 @@ fontfamilies:
   options: Scale=MatchLowercase
   font: CMU Typewriter Text
 header-includes:
-  - \usepackage{caption}
-  - \usepackage{mathtools}
-  - \usepackage{pdfpages}
-  - \captionsetup[figure]{name=Рис.}
-  - \captionsetup[table]{name=Табл.}
+  - % nothing!
 include-before:
   - \IfFileExists{./title.pdf}{\includepdf[width=\paperwidth,height=\paperheight,pages=-]{title.pdf}}{}
 eqnPrefix:

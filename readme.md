@@ -21,20 +21,14 @@ npm i kotborealis/patchouli
 ## Usage
 
 ```
-# Compile file to html:
+# Compile file to pdf:
 patchouli file.md
 
-# Compile file to pdf:
-patchouli file.md --type pdf
+# Compile file to html:
+patchouli file.md --type html
 
 # Compile file to docx
 patchouli file.md --type=docx
-
-# Live reload:
-patchouli live file.md
-
-# Clean all generated pdf/html files:
-patchouli clean
 ```
 
 Concat files
@@ -49,9 +43,12 @@ Pass `--keep-concat` if you want to keep this file.
 
 ## Included filters
 
-* [pandoc-svg](https://gist.github.com/jeromerobert/3996eca3acd12e4c3d40)
-* [pandoc-crossref](http://lierdakil.github.io/pandoc-crossref/)
+* [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/)
 * [pandoc-include-code](https://github.com/owickstrom/pandoc-include-code)
+
+## Included latex packages
+
+* [karnaugh-map](https://ctan.org/pkg/karnaugh-map]
 
 ## Configuration
 
@@ -65,13 +62,7 @@ This wrapper loads the following configs in the same order and combines them usi
 
 ## Arguments
 
-* `live` --- run live-server and watch files
-* `watch` --- watch files
-* `clean` --- remove output files
-* `--type=html` --- specify output type (html, pdf, tex, docx)
-* `--concat=build.md` --- concat files into specified file and then compile it
-* `--keep-concat` --- keep concatenated file
-* `--keep-tex` --- keep tex file
+* `--keep-sources` --- keep `.tex` and concatenated file
 * `--pandoc-*=?` --- pass `--*=?` argument to pandoc
 
 ## Default template
