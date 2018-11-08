@@ -12,7 +12,7 @@ Pandoc wrapper
 
 ## Installation
 
-Following command will also download docker image (about 3.3GB).
+Following command will also download docker image (about 800mb).
 
 ```
 npm i kotborealis/patchouli
