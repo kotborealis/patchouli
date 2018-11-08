@@ -42,14 +42,23 @@ let config = {
     html: [],
     pdf: [],
 
-    args: {}
+    output_dir: '.out',
+    output: 'build',
+
+    args: {},
 };
 
 config = Object.assign(config, {
     pandoc_path: `docker run 
+        --entrypoint /usr/bin/pandoc
         ${config.docker.mount_cwd} 
         ${config.docker.mount_tmp} 
         ${config.docker.image}`.replace(/\n/g, ''),
+    xelatex_path: `docker run 
+        ${config.docker.mount_cwd} 
+        ${config.docker.mount_tmp} 
+        ${config.docker.image}
+        xelatex -output-directory=${config.output_dir} -aux-directory=${config.output_dir}`.replace(/\n/g, ''),
 });
 
 module.exports = config;

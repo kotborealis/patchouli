@@ -22,6 +22,4 @@ COPY ./resources/ ./resources/
 
 WORKDIR /source
 
-ENTRYPOINT ["/usr/bin/pandoc"]
-
 CMD ["--help"]
