@@ -15,9 +15,9 @@ const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 
 const type = config.args.type || config.args.t || 'pdf';
 
-build_document(type, targets).then(({document_path, concat_path, tex_path}) => {
+build_document(type, targets).then(async ({document_path, concat_path, tex_path}) => {
     if(!config.args['keep-sources'])
-        unlink([concat_path, tex_path]);
+        await unlink([concat_path, tex_path]);
 
     process.exit(0);
 }).catch(r   => {
