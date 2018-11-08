@@ -18,7 +18,7 @@ ADD ./pandoc-install.sh /tmp
 RUN /tmp/pandoc-install.sh
 
 WORKDIR /opt/src
-COPY . .
+COPY ./resources/ ./resources/
 
 WORKDIR /source
 

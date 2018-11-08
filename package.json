@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "docker-build": "docker build . -t kotborealis/patchouli:latest",
+    "docker-build": "docker build ./docker/ -t kotborealis/patchouli:latest",
     "docker-pull": "docker pull kotborealis/patchouli:latest",
     "docker-push": "docker push kotborealis/patchouli:latest",
     "build": "npm run docker-build",
