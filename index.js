@@ -21,13 +21,19 @@ build_document(type, targets).then(async ({document_path, concat_path, tex_path}
 
     process.exit(0);
 }).catch(r   => {
-    console.log(r);
+    if(r.stderr)
+        console.error(r.stderr);
+    else
+        console.error(r);
 
     process.exit(1);
 });
 
 process.on('unhandledRejection', r => {
-    console.error(r);
+    if(r.stderr)
+        console.error(r.stderr);
+    else
+        console.error(r);
 
     process.exit(1);
 });
