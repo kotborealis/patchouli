@@ -49,16 +49,15 @@ let config = {
 };
 
 config = Object.assign(config, {
-    pandoc_path: `docker run 
-        --entrypoint /usr/bin/pandoc
-        ${config.docker.mount_cwd} 
-        ${config.docker.mount_tmp} 
-        ${config.docker.image}`.replace(/\n/g, ''),
-    xelatex_path: `docker run 
+    docker_cmd: cmd => `docker run 
         ${config.docker.mount_cwd} 
         ${config.docker.mount_tmp} 
         ${config.docker.image}
-        xelatex -output-directory=${config.output_dir} -aux-directory=${config.output_dir}`.replace(/\n/g, ''),
+        /bin/bash -c "${
+            cmd.join(" && ").replace(/"/g, "\\\"")
+        }"`.replace(/\n/g, ''),
+    pandoc_cmd: `/usr/bin/pandoc`,
+    xelatex_cmd: `xelatex -output-directory=${config.output_dir} -aux-directory=${config.output_dir}`
 });
 
 module.exports = config;
