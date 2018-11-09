@@ -17,6 +17,8 @@ const type = config.args.type || config.args.t || 'pdf';
 const errorHandler = r => {
     if(r.stderr)
         console.error(r.stderr);
+    if(r.stdout)
+        console.log(r.stdout);
     else
         console.error(r);
 
