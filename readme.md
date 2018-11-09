@@ -15,7 +15,7 @@ Pandoc wrapper
 Following command will also download docker image (about 800mb).
 
 ```
-npm i kotborealis/patchouli
+npm i -g kotborealis/patchouli --unsafe-perm
 ```
 
 ## Usage

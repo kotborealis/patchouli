@@ -9,7 +9,7 @@
     "docker-pull": "docker pull kotborealis/patchouli:latest",
     "docker-push": "docker push kotborealis/patchouli:latest",
     "build": "npm run docker-build",
-    "preinstall": "npm run docker-pull",
+    "preinstall": "docker pull kotborealis/patchouli:latest",
     "prepublishOnly": "npm run docker-build && npm run docker-push"
   },
   "author": "patchouli@awooo.ru",
