@@ -11,18 +11,15 @@ RUN apt-get update -y \
     latex-xcolor \
     fonts-cmu \
     lmodern \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-#install pandoc
-ADD ./pandoc-build/pandoc.tar /root/.cabal/bin/
-ADD ./pandoc-build/pandoc-data.tar /root/.cabal/share/x86_64-linux-ghc-8.0.2/pandoc-2.1.3/
-ENV PATH="/root/.cabal/bin:${PATH}"
+ADD ./pandoc-install.sh /tmp
+RUN /tmp/pandoc-install.sh
 
 WORKDIR /opt/src
-COPY . .
+COPY ./resources/ ./resources/
 
 WORKDIR /source
-
-ENTRYPOINT ["/root/.cabal/bin/pandoc"]
 
 CMD ["--help"]

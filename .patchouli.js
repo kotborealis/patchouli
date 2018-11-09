@@ -8,36 +8,13 @@ let config = {
         image: ` --rm kotborealis/patchouli:latest`,
     },
 
-    ignore_ext: ['html', 'pdf'],
-    clean_ext: ['html', 'pdf'],
-
-    live: {
-        html: [
-            '--mathjax=/mathjax/MathJax.js?config=TeX-AMS_CHTML-full,local/local',
-            '-c', '/resources/pandoc.css'
-        ],
-        pdf: [
-
-        ]
-    },
-
-    release: {
-        html: [
-            '--mathjax',
-            '-H', path.join(patchouly_root, 'resources', 'pandoc.css.html')
-        ],
-        pdf: [
-
-        ]
-    },
-
     default_pandoc: [
         `-f`, `markdown+smart+fancy_lists+raw_tex`,
         '--standalone',
         '--toc',
-        `--filter`, `pandoc-crossref`,
-        `--filter`, `pandoc-include-code`
+        `--filter`, `pandoc-crossref`
     ],
+
     default_html: [
         `--to`,
         `html5`,
@@ -45,7 +22,6 @@ let config = {
     ],
     default_tex: [
         `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
-        `--filter=${path.join(patchouly_root, 'scripts', './pandoc-svg.py')}`,
         `--variable`, 'mainfont="CMU Serif"',
         `--variable`, 'sansfont="CMU Sans Serif"',
         `--variable`, `monofont="CMU Typewriter Text"`
@@ -62,14 +38,22 @@ let config = {
     html: [],
     pdf: [],
 
-    args: {}
+    output_dir: '.out',
+    output: 'build',
+
+    args: {},
 };
 
 config = Object.assign(config, {
-    pandoc_path: `docker run 
+    docker_cmd: cmd => `docker run 
         ${config.docker.mount_cwd} 
         ${config.docker.mount_tmp} 
-        ${config.docker.image}`.replace(/\n/g, ''),
+        ${config.docker.image}
+        /bin/bash -c "${
+            cmd.join(" && ").replace(/"/g, "\\\"")
+        }"`.replace(/\n/g, ''),
+    pandoc_cmd: `/usr/bin/pandoc `,
+    xelatex_cmd: `xelatex -output-directory=${config.output_dir} `
 });
 
 module.exports = config;
