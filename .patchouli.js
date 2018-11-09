@@ -56,8 +56,8 @@ config = Object.assign(config, {
         /bin/bash -c "${
             cmd.join(" && ").replace(/"/g, "\\\"")
         }"`.replace(/\n/g, ''),
-    pandoc_cmd: `/usr/bin/pandoc`,
-    xelatex_cmd: `xelatex -output-directory=${config.output_dir} -aux-directory=${config.output_dir}`
+    pandoc_cmd: `/usr/bin/pandoc `,
+    xelatex_cmd: `xelatex -output-directory=${config.output_dir} `
 });
 
 module.exports = config;
