@@ -8,15 +8,11 @@ let config = {
         image: ` --rm kotborealis/patchouli:latest`,
     },
 
-    ignore_ext: ['html', 'pdf'],
-    clean_ext: ['html', 'pdf'],
-
     default_pandoc: [
         `-f`, `markdown+smart+fancy_lists+raw_tex`,
         '--standalone',
         '--toc',
-        `--filter`, `pandoc-crossref`,
-        `--filter`, `pandoc-include-code`
+        `--filter`, `pandoc-crossref`
     ],
 
     default_html: [
