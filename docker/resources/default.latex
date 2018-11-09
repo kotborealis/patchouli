@@ -251,6 +251,7 @@ $endif$
 \usepackage{amsthm}
 \usepackage{unicode-math}
 \usepackage{unicode-math}
+\usepackage{listings}
 \usepackage{/opt/src/resources/karnaugh-map}
 
 % Theorems, proofs, etc
@@ -275,7 +276,16 @@ $endif$
 \captionsetup[figure]{name=Рис.}
 \captionsetup[table]{name=Табл.}
 
+% listings
+\lstset{
+    breaklines=true,
+    captionpos=t,
+    numbers=left
+}
+\renewcommand*{\lstlistingname}{Листинг}
+
 % commands
+\newcommand{\includecode}[2][c]{\lstinputlisting[caption=#2, escapechar=, language=#1]{#2}<!---->}
 \newcommand{\locmin}{\operatorname{locmin}}
 \newcommand{\locmax}{\operatorname{locmax}}
 \newcommand{\absmin}{\operatorname{absmin}}
