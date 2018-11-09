@@ -34,7 +34,6 @@ patchouli --type=docx
 ## Included filters
 
 * [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/)
-* [pandoc-include-code](https://github.com/owickstrom/pandoc-include-code)
 
 ## Included latex packages
 
@@ -48,11 +47,8 @@ This wrapper loads the following configs in the same order and combines them usi
 * `~/.patchouli.js`
 * `$PWD/.patchouli.js`
 
-**TODO: More about configs.**
-
 ## Arguments
 
-* `--keep-sources` --- keep `.tex` and concatenated file
 * `--pandoc-*=?` --- pass `--*=?` argument to pandoc
 
 ## Default template
