@@ -37,7 +37,7 @@ patchouli --type=docx
 
 ## Included latex packages
 
-* [karnaugh-map](https://ctan.org/pkg/karnaugh-map]
+* [karnaugh-map](https://ctan.org/pkg/karnaugh-map)
 
 ## default.latex
 
