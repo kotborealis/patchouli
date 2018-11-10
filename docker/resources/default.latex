@@ -283,9 +283,10 @@ $endif$
     numbers=left
 }
 \renewcommand*{\lstlistingname}{Листинг}
+\newcommand{\includecode}[2][c]{\lstinputlisting[caption=#2, language=#1]{#2}}
+\newcommand{\includecodelines}[4][c]{\lstinputlisting[caption=#2 стр. #3–#4, firstnumber=#3, firstline=#3, lastline=#4, language=#1]{#2}}
 
 % commands
-\newcommand{\includecode}[2][c]{\lstinputlisting[caption=#2, escapechar=, language=#1]{#2}<!---->}
 \newcommand{\locmin}{\operatorname{locmin}}
 \newcommand{\locmax}{\operatorname{locmax}}
 \newcommand{\absmin}{\operatorname{absmin}}
