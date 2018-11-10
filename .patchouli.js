@@ -1,4 +1,6 @@
 const path = require('path');
+const os = require('os');
+const {uid, gid} = os.userInfo();
 const patchouly_root = "/opt/src";
 
 let config = {
@@ -45,7 +47,12 @@ let config = {
 };
 
 config = Object.assign(config, {
-    docker_cmd: cmd => `docker run 
+    docker_cmd: cmd => `docker run
+        --user="${uid}:${gid}" 
+        --net=none
+        --pid=host
+        --uts=host
+        --ipc=host
         ${config.docker.mount_cwd} 
         ${config.docker.mount_tmp} 
         ${config.docker.image}
