@@ -280,7 +280,10 @@ $endif$
 \lstset{
     breaklines=true,
     captionpos=t,
-    numbers=left
+    numbers=left,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    keepspaces=\true
 }
 \renewcommand*{\lstlistingname}{Листинг}
 \newcommand{\includecode}[2][c]{\lstinputlisting[caption=#2, language=#1]{#2}}
