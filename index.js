@@ -12,7 +12,7 @@ const markdown_files = config.args._
 
 const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 
-const type = config.args.type || config.args.t || 'pdf';
+const types = [config.args.type || config.args.t || config.type || 'pdf'].flat();
 
 const errorHandler = r => {
     if(r.stderr)
@@ -25,6 +25,8 @@ const errorHandler = r => {
     process.exit(1);
 };
 
-build_document(type, targets).catch(errorHandler);
+types.forEach(type =>
+    build_document(type, targets).catch(errorHandler)
+);
 
 process.on('unhandledRejection', errorHandler);
