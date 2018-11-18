@@ -24,9 +24,6 @@ npm i -g kotborealis/patchouli --unsafe-perm
 # Concat and compile all .md files in current directory to pdf:
 patchouli
 
-# # Concat and compile all .md files in current directory to html:
-patchouli --type html
-
 # # Concat and compile all .md files in current directory to docx:
 patchouli --type=docx
 ```
@@ -39,9 +36,6 @@ patchouli --type=docx
 
 * [karnaugh-map](https://ctan.org/pkg/karnaugh-map)
 
-## default.latex
-
-See `%My settings` in `docker/resources/default.latex` file.
 
 ## Configuration
 
@@ -51,11 +45,9 @@ This wrapper loads the following configs in the same order and combines them usi
 * `~/.patchouli.js`
 * `$PWD/.patchouli.js`
 
-## Arguments
-
-* `--pandoc-*=?` --- pass `--*=?` argument to pandoc
-
 ## Default template
+
+See `%My settings` in `docker/resources/default.latex` file.
 
 ### yaml options
 

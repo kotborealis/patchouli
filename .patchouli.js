@@ -17,28 +17,17 @@ let config = {
         `--filter`, `pandoc-crossref`
     ],
 
-    default_html: [
-        `--to`,
-        `html5`,
-        `-H`, path.join(patchouly_root, 'resources', 'mathjax.html'),
-    ],
     default_tex: [
         `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
-        `--variable`, 'mainfont="CMU Serif"',
-        `--variable`, 'sansfont="CMU Sans Serif"',
-        `--variable`, `monofont="CMU Typewriter Text"`
     ],
-    default_pdf: [
-        `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
-        `--variable`, 'mainfont="CMU Serif"',
-        `--variable`, 'sansfont="CMU Sans Serif"',
-        `--variable`, `monofont="CMU Typewriter Text"`,
-        `--pdf-engine=xelatex`
+
+    default_docx: [
+
     ],
 
     pandoc: [],
-    html: [],
-    pdf: [],
+    tex: [],
+    docx: [],
 
     output_dir: '.out',
     output: 'build',
@@ -59,7 +48,7 @@ config = Object.assign(config, {
         /bin/bash -c "${
             cmd.join(" && ").replace(/"/g, "\\\"")
         }"`.replace(/\n/g, ''),
-    pandoc_cmd: `/usr/bin/pandoc `,
+    pandoc_cmd: `/usr/bin/pandoc -s `,
     xelatex_cmd: `xelatex -output-directory=${config.output_dir} `
 });
 
