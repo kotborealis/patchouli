@@ -12,7 +12,7 @@ const markdown_files = config.args._
 
 const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 
-const types = [config.args.type || config.args.t || config.type || 'pdf'].flat();
+const types = [config.args.type || config.args.t || config.type || 'pdf'].reduce((a, b) => a.concat(b), []);
 
 const errorHandler = r => {
     if(r.stderr)
