@@ -9,10 +9,10 @@ if(config.args.v || config.args.version || config.args.h || config.args.help){
     const package = require('./package.json');
     console.log(`${package.name} \t v.${package.version}`);
     console.log(``);
-    console.log(`\t* npm: https://npmjs.org/package/${package.name}`);
-    console.log(`\t* github: ${package.repository.url}`);
-    console.log(`\t* readme: ${package.repository.url.split('.git')[0]}/blob/master/readme.md`);
-    console.log(`\t* concact me: ${package.author}`);
+    console.log(`\t* npm: \t\t https://npmjs.org/package/${package.name}`);
+    console.log(`\t* github: \t ${package.repository.url}`);
+    console.log(`\t* readme: \t ${package.repository.url.split('.git')[0]}/blob/master/readme.md`);
+    console.log(`\t* author: \t ${package.author}`);
     return;
 }
 
