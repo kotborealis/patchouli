@@ -5,6 +5,17 @@ const glob = require('glob');
 const md_only = require('./lib/md_only_filter');
 const build_document = require('./lib/build_document');
 
+if(config.args.v || config.args.version || config.args.h || config.args.help){
+    const package = require('./package.json');
+    console.log(`${package.name} \t v.${package.version}`);
+    console.log(``);
+    console.log(`\t* npm: https://npmjs.org/package/${package.name}`);
+    console.log(`\t* github: ${package.repository.url}`);
+    console.log(`\t* readme: ${package.repository.url.split('.git')[0]}/blob/master/readme.md`);
+    console.log(`\t* concact me: ${package.author}`);
+    return;
+}
+
 const markdown_files = config.args._
     .map(pattern => glob.sync(pattern))
     .reduce((a, b) => a.concat(b), [])
