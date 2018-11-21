@@ -10,6 +10,7 @@
     "docker-push": "docker push kotborealis/patchouli:latest",
     "build": "npm run docker-build",
     "preinstall": "docker pull kotborealis/patchouli:latest",
+    "postinstall": "patchouli --version",
     "prepublishOnly": "npm run docker-build && npm run docker-push"
   },
   "author": "patchouli@awooo.ru",
