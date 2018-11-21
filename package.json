@@ -20,7 +20,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "async-readline": "^1.1.0",
     "chen.js": "^1.0.24",
     "debug": "^4.1.0",
     "glob": "^7.1.2"
