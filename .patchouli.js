@@ -11,7 +11,7 @@ let config = {
     },
 
     default_pandoc: [
-        `-f`, `markdown+smart+fancy_lists+raw_tex`,
+        `-f`, `markdown+smart+fancy_lists+raw_tex-auto_identifiers`,
         '--standalone',
         '--toc',
         `--filter`, `pandoc-crossref`
