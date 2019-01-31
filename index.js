@@ -6,13 +6,7 @@ const md_only = require('./lib/md_only_filter');
 const build_document = require('./lib/build_document');
 
 if(config.args.v || config.args.version || config.args.h || config.args.help){
-    const package = require('./package.json');
-    console.log(`${package.name} \t v.${package.version}`);
-    console.log(``);
-    console.log(`\t* npm: \t\t https://npmjs.org/package/${package.name}`);
-    console.log(`\t* github: \t ${package.repository.url}`);
-    console.log(`\t* readme: \t ${package.repository.url.split('.git')[0]}/blob/master/readme.md`);
-    console.log(`\t* author: \t ${package.author}`);
+    console.log(require('./lib/help.js'));
     return;
 }
 
@@ -36,8 +30,8 @@ const errorHandler = r => {
     process.exit(1);
 };
 
-types.forEach(type =>
-    build_document(type, targets).catch(errorHandler)
-);
+for(const type of types){
+    const {stdout, stderr} = build_document(type, targets).catch(errorHandler);
+}
 
 process.on('unhandledRejection', errorHandler);
