@@ -22,15 +22,13 @@ const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 const types = [config.args.type || config.args.t || config.type || 'pdf'].reduce((a, b) => a.concat(b), []);
 
 const handleOut = ({stderr, stdout}) => {
-    if(stdout){
-        console.log(format_log(parse_log.parse(stdout)));
-        return true;
-    }
-    if(stderr){
-        console.log(format_log(parse_log.parse(stderr)));
-        return true;
-    }
-    return false;
+    const out = stdout ? stdout : (stderr ? stderr : false);
+
+    if(!out)
+        return false;
+
+    process.stdout.write(format_log(parse_log.parse(out)));
+    return true;
 }
 
 const errorHandler = r => {
