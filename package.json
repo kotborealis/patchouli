@@ -12,7 +12,6 @@
     "docker-pull": "docker pull kotborealis/patchouli:latest",
     "docker-push": "docker push kotborealis/patchouli:latest",
     "build": "npm run docker-build",
-    "preinstall": "docker pull kotborealis/patchouli:latest",
     "postinstall": "patchouli --version",
     "prepublishOnly": "npm run docker-build && npm run docker-push"
   },
@@ -23,7 +22,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "chen.js": "^1.0.24",
+    "chen.js": "^2.0.2",
     "debug": "^4.1.0",
     "glob": "^7.1.2"
   },
