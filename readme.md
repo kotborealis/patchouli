@@ -34,11 +34,6 @@ patchouli --type=docx
 
 * [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/)
 
-## Included latex packages
-
-* [karnaugh-map](https://ctan.org/pkg/karnaugh-map)
-
-
 ## Configuration
 
 This wrapper loads the following configs in the same order and combines them using deep-merge:

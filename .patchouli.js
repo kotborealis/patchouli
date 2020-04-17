@@ -25,9 +25,16 @@ let config = {
 
     ],
 
+    default_revealjs: [
+        `-V`, `revealjs-url=https://revealjs.com`,
+        `--slide-level`, `2`,
+        `-t`, `revealjs`
+    ],
+
     pandoc: [],
     tex: [],
     docx: [],
+    revealjs: [],
 
     output_dir: '.out',
     output: 'build',
