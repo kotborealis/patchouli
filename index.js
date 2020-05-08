@@ -4,6 +4,7 @@ const config = require('./lib/config');
 const glob = require('glob');
 const md_only = require('./lib/md_only_filter');
 const build_document = require('./lib/build_document');
+const debug = require('./lib/debug').extend('main');
 
 if(config.args.v || config.args.version || config.args.h || config.args.help){
     const package = require('./package.json');
@@ -21,9 +22,15 @@ const markdown_files = config.args._
     .reduce((a, b) => a.concat(b), [])
     .filter(md_only);
 
+debug("Searching for md files", markdown_files);
+
 const targets = markdown_files.length ? markdown_files : glob.sync('*.md');
 
+debug("Found target files", targets);
+
 const types = [config.args.type || config.args.t || config.type || 'pdf'].reduce((a, b) => a.concat(b), []);
+
+debug("Build types", types);
 
 const errorHandler = r => {
     if(r.stderr)
@@ -36,8 +43,9 @@ const errorHandler = r => {
     process.exit(1);
 };
 
-types.forEach(type =>
-    build_document(type, targets).catch(errorHandler)
-);
+types.forEach(type => {
+    debug("Building type", type, targets);
+    build_document(type, targets).catch(errorHandler);
+});
 
 process.on('unhandledRejection', errorHandler);
