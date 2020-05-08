@@ -37,9 +37,13 @@ let config = {
     revealjs: [],
 
     output_dir: '.out',
-    output: 'build',
+    output: 'build.md',
 
     args: {},
+
+    output_ext_mapping: {
+        revealjs: "html"
+    }
 };
 
 config = Object.assign(config, {
