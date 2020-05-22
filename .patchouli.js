@@ -26,7 +26,8 @@ let config = {
     ],
 
     default_revealjs: [
-        `-V`, `revealjs-url=https://revealjs.com`,
+		`--template=${path.join(patchouly_root, 'resources', './default.revealjs')}`,
+        `-V`, `revealjs-url=https://awooo.ru/reveal.js`,
         `--slide-level`, `2`,
         `-t`, `revealjs`
     ],
