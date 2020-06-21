@@ -45,7 +45,7 @@ patchouli --type=docx
 patchouli --type=revealjs
 ```
 
-Place .patchouli.js in the current directory for advanced configuration
+Place `.patchouli.js` in the current directory for advanced configuration
 ```js
 module.exports = {
     output: 'desired_output_filename',
