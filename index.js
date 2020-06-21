@@ -3,8 +3,8 @@
 const args = require('chen.js').args();
 const config = require('./lib/config');
 const glob = require('glob');
-const md_only = require('./lib/md_only_filter');
-const build_document = require('./lib/build_document');
+const md_only = require('./lib/predicate_md_files');
+const build_document = require('./lib/document_builder');
 const debug = require('./lib/debug').extend('main');
 
 if(args.v || args.version || args.h || args.help){
