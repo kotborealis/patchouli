@@ -17,7 +17,7 @@ Installation needs root permissions to pull [kotborealis/patchouli](https://hub.
 docker image. 
 
 ```shell script
-sudo npm i -g kotborealis/patchouli --unsafe-perm
+sudo npm i -g @kotborealis/patchouli --unsafe-perm
 ```
 
 ## Usage
