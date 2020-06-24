@@ -47,4 +47,4 @@ jobs:
         name: kotborealis/patchouli
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        dockerfile: ./docker/Dockerfile
+        context: ./docker/
