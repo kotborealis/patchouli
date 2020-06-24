@@ -10,13 +10,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install imagemagick
-      - run: sudo apt install imagemagick
+        run: sudo apt install imagemagick
 
       - name: Fix imagemagick compare
-      - run: sudo sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/g' /etc/ImageMagick-6/policy.xml
+        run: sudo sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/g' /etc/ImageMagick-6/policy.xml
 
       - name: Install patchouli
-      - run: sudo npm i -g . --unsafe-perm
+        run: sudo npm i -g . --unsafe-perm
 
       - name: Run tests
-      - run: cd test && bash ./test.bash
+        run: cd test && bash ./test.bash
