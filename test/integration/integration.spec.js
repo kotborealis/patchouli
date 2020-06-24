@@ -16,18 +16,18 @@ describe('document generation', () => {
         });
 
         it('renders as in the reference', async () => {
-            const {exitCode} = await run(`
-                cmp
-                ./test/integration/fixtures/reference_build.tex
-                ./test/integration/env/build.tex
-            `);
-            assert.equal(exitCode, 0);
-
             fs.createReadStream('./test/integration/fixtures/reference_build.tex')
                 .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.tex'));
 
             fs.createReadStream('./test/integration/env/build.tex')
                 .pipe(fs.createWriteStream('./test/integration/artifacts/build.tex'));
+
+            const {exitCode} = await run(`
+                cmp
+                ./test/integration/artifacts/reference_build.tex
+                ./test/integration/artifacts/build.tex
+            `);
+            assert.equal(exitCode, 0);
         });
     });
 
@@ -38,17 +38,17 @@ describe('document generation', () => {
             assert.equal(exitCode, 0);
         });
 
-        fs.createReadStream('./test/integration/fixtures/reference_build.pdf')
-            .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.pdf'));
-
-        fs.createReadStream('./test/integration/env/build.pdf')
-            .pipe(fs.createWriteStream('./test/integration/artifacts/build.pdf'));
-
         it('renders as in the reference', async () => {
+            fs.createReadStream('./test/integration/fixtures/reference_build.pdf')
+                .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.pdf'));
+
+            fs.createReadStream('./test/integration/env/build.pdf')
+                .pipe(fs.createWriteStream('./test/integration/artifacts/build.pdf'));
+
             const {stderr} = await run(`
                 compare
-                ./test/integration/fixtures/reference_build.pdf
-                ./test/integration/env/build.pdf
+                ./test/integration/artifacts/reference_build.pdf
+                ./test/integration/artifacts/build.pdf
                 -compose src
                 -metric AE
                 ./test/integration/artifacts/diff.pdf
@@ -64,17 +64,17 @@ describe('document generation', () => {
             assert.equal(exitCode, 0);
         });
 
-        fs.createReadStream('./test/integration/fixtures/reference_build.html')
-            .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.html'));
-
-        fs.createReadStream('./test/integration/env/build.html')
-            .pipe(fs.createWriteStream('./test/integration/artifacts/build.html'));
-
         it('renders as in the reference', async () => {
+            fs.createReadStream('./test/integration/fixtures/reference_build.html')
+                .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.html'));
+
+            fs.createReadStream('./test/integration/env/build.html')
+                .pipe(fs.createWriteStream('./test/integration/artifacts/build.html'));
+
             const {exitCode} = await run(`
                 cmp
-                ./test/integration/fixtures/reference_build.html
-                ./test/integration/env/build.html
+                ./test/integration/artifacts/reference_build.html
+                ./test/integration/artifacts/build.html
             `);
             assert.equal(exitCode, 0);
         });
@@ -87,17 +87,17 @@ describe('document generation', () => {
             assert.equal(exitCode, 0);
         });
 
-        fs.createReadStream('./test/integration/fixtures/reference_build.revealjs.html')
-            .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.revealjs.html'));
-
-        fs.createReadStream('./test/integration/env/build.revealjs.html')
-            .pipe(fs.createWriteStream('./test/integration/artifacts/build.revealjs.html'));
-
         it('renders as in the reference', async () => {
+            fs.createReadStream('./test/integration/fixtures/reference_build.revealjs.html')
+                .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.revealjs.html'));
+
+            fs.createReadStream('./test/integration/env/build.revealjs.html')
+                .pipe(fs.createWriteStream('./test/integration/artifacts/build.revealjs.html'));
+
             const {exitCode} = await run(`
                 cmp
-                ./test/integration/fixtures/reference_build.revealjs.html
-                ./test/integration/env/build.revealjs.html
+                ./test/integration/artifacts/reference_build.revealjs.html
+                ./test/integration/artifacts/build.revealjs.html
             `);
             assert.equal(exitCode, 0);
         });

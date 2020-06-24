@@ -1,12 +1,11 @@
 ---
 numbersections: false
 toc: false
-lang: ru
+lang: ru-RU
 papersize: a4
 documentclass: extarticle
 geometry: margin=2cm
 fontsize: 12pt
-figPrefix: "рис. "
 fontfamilies:
 - name: \cyrillicfont
   font: CMU Serif
