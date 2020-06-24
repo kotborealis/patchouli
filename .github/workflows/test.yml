@@ -18,6 +18,9 @@ jobs:
       - name: Install patchouli
         run: sudo npm i -g . --unsafe-perm
 
+      - name: Install mocha globally
+        run: sudo npm i -g mocha
+
       - name: Run tests
         run: npm test
 
