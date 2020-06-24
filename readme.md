@@ -1,6 +1,7 @@
 # Patchouli
 
 [![](https://images.microbadger.com/badges/image/kotborealis/patchouli.svg)](https://microbadger.com/images/kotborealis/patchouli "Get your own image badge on microbadger.com")
+![CI](https://github.com/kotborealis/patchouli/workflows/CI/badge.svg)
 
 ![](./patche.png)
 
