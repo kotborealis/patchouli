@@ -39,6 +39,8 @@ describe('document generation', () => {
         });
 
         it('renders as in the reference', async () => {
+            this.timeout(100000);
+            
             fs.createReadStream('./test/integration/fixtures/reference_build.pdf')
                 .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.pdf'));
 
