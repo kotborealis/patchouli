@@ -38,7 +38,7 @@ describe('document generation', () => {
             assert.equal(exitCode, 0);
         });
 
-        it('renders as in the reference', async () => {
+        it('renders as in the reference', async function () {
             this.timeout(100000);
             
             fs.createReadStream('./test/integration/fixtures/reference_build.pdf')
