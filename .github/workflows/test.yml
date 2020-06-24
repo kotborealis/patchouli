@@ -1,0 +1,22 @@
+name: test
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install imagemagick
+      - run: sudo apt install imagemagick
+
+      - name: Fix imagemagick compare
+      - run: sudo sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/g' /etc/ImageMagick-6/policy.xml
+
+      - name: Install patchouli
+      - run: sudo npm i -g . --unsafe-perm
+
+      - name: Run tests
+      - run: cd test && bash ./test.bash
