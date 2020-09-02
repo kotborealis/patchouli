@@ -1,1 +1,3 @@
 node_modules
+./test/integration/env/.out
+./test/integration/artifacts/*

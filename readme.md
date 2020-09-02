@@ -1,51 +1,73 @@
 # Patchouli
 
 [![](https://images.microbadger.com/badges/image/kotborealis/patchouli.svg)](https://microbadger.com/images/kotborealis/patchouli "Get your own image badge on microbadger.com")
+![CI](https://github.com/kotborealis/patchouli/workflows/CI/badge.svg)
 
 ![](./patche.png)
 
-Pandoc wrapper
+Pandoc wrapper with batteries included! 🔋
 
 ## Dependencies
 
 * Node 8.0+
-* NPM
 * Docker
 
 ## Installation
 
-Following command will also download docker image (about 800mb).
+Installation needs root permissions to pull [kotborealis/patchouli](https://hub.docker.com/r/kotborealis/patchouli) 
+docker image. 
 
-```
-sudo npm i -g @kotborealis/patchouli@2.6.6 --unsafe-perm
+```shell script
+sudo npm i -g @kotborealis/patchouli --unsafe-perm
 ```
 
 ## Usage
 
+Create `.md` files:
+```markdown
+00_intro.md
+10_general.md
+90_conclusion.md
+99_references.md
 ```
-# Concat and compile all .md files in current directory to pdf:
-patchouli
 
-# # Concat and compile all .md files in current directory to docx:
+Patchouli combines all markdown files into a single file.
+
+Build to pdf (`build.pdf` by default):
+```shell script
+patchouli
+```
+
+Specifying output type:
+```shell script
+patchouli --type=tex
+patchouli --type=pdf
 patchouli --type=docx
+patchouli --type=revealjs
+```
+
+Place `.patchouli.js` in the current directory for advanced configuration
+```js
+module.exports = {
+    output: 'desired_output_filename',
+    type: 'pdf',
+}
 ```
 
 ## Included filters
 
 * [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/)
+    --- pandoc filter for numbering figures, equations, tables and cross-references to them.
 
 ## Configuration
 
-This wrapper loads the following configs in the same order and combines them using deep-merge:
+Patchouli loads configurations and combines from files named `.patchouli.js` 
+located in home and current directory,
 
-* `.../patchouli/.patchouli.js`
-* `~/.patchouli.js`
-* `$PWD/.patchouli.js`
+## Latex template
 
-## Default template
+See `%My settings` in `docker/resources/default.latex` file for reference.
 
-See `%My settings` in `docker/resources/default.latex` file.
-
-### yaml options
+### New yaml options
 
 * `figure_H: true` --- adds `[H]` param to figures to keep them in place
