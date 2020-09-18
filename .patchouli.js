@@ -14,7 +14,6 @@ let config = {
         `-f`, `markdown+yaml_metadata_block+smart+fancy_lists+raw_tex-auto_identifiers`,
         '--standalone',
         '--toc',
-        `--filter`, `pandoc-crossref`
     ],
 
     default_tex: [
@@ -44,7 +43,9 @@ let config = {
 
     output_ext_mapping: {
         revealjs: "html"
-    }
+    },
+
+    literate: false
 };
 
 config = Object.assign(config, {
@@ -53,7 +54,6 @@ config = Object.assign(config, {
         --net=none
         --pid=host
         --uts=host
-        --ipc=host
         ${config.docker.mount_cwd} 
         ${config.docker.mount_tmp} 
         ${config.docker.image}
