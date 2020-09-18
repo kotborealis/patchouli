@@ -18,11 +18,12 @@ describe('document generation', () => {
             fs.createReadStream('./test/integration/env/build.tex')
                 .pipe(fs.createWriteStream('./test/integration/artifacts/build.tex'));
 
-            const {exitCode} = await runCmd(`
-                cmp
+            const {exitCode, stdout} = await runCmd(`
+                diff
                 ./test/integration/artifacts/reference_build.tex
                 ./test/integration/artifacts/build.tex
             `);
+            assert.equal(stdout, ``);
             assert.equal(exitCode, 0);
         });
     });

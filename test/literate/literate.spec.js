@@ -21,11 +21,12 @@ describe('literate document generation', () => {
                 .pipe(replace(/\/tmp\/tmp-[^.]+\.pdf/ig, "/tmp/tmp.pdf"))
                 .pipe(fs.createWriteStream('./test/literate/artifacts/build.tex'));
 
-            const {exitCode} = await runCmd(`
-                cmp
+            const {exitCode, stdout} = await runCmd(`
+                diff
                 ./test/literate/artifacts/reference_build.tex
                 ./test/literate/artifacts/build.tex
             `);
+            assert.equal(stdout, ``);
             assert.equal(exitCode, '0');
         });
     });
