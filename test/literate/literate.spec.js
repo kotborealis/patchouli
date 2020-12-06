@@ -3,7 +3,7 @@ const assert = require('assert');
 const replace = require('stream-replace');
 const {runCmd} = require('../util/util');
 
-describe('literate document generation', () => {
+describe.skip('literate document generation', () => {
     describe('tex', function() {
         this.timeout(100000);
 
