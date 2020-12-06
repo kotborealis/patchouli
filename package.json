@@ -24,9 +24,16 @@
   "dependencies": {
     "chen.js": "^2.0.2",
     "debug": "^4.1.0",
-    "glob": "^7.1.2"
+    "gfm-code-block-regex": "^1.0.0",
+    "gfm-code-blocks": "^1.0.0",
+    "glob": "^7.1.2",
+    "tmp-promise": "^3.0.2"
   },
   "bin": {
     "patchouli": "index.js"
+  },
+  "devDependencies": {
+    "mocha": "^8.1.3",
+    "stream-replace": "^1.0.0"
   }
 }

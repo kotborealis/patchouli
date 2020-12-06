@@ -58,10 +58,6 @@ Text}
 \def\fps@figure{htbp}
 \makeatother
 
-\makeatletter
-\@ifpackageloaded{caption}{\captionsetup{labelformat=empty}}{\usepackage[labelformat=empty]{caption}}
-\newenvironment{pandoccrossrefsubcaption}{\renewcommand{\toprule}{}\renewcommand{\bottomrule}{}}{}
-\makeatother
 
 \date{}
 
@@ -85,9 +81,8 @@ Text}
 
 % equation numbering
 \numberwithin{equation}{section}
-
-\captionsetup[figure]{name=Рис.}
-\captionsetup[table]{name=Табл.}
+\captionsetup[figure]{name=Рисунок}
+\captionsetup[table]{name=Таблица}
 
 % listings
 \lstset{
