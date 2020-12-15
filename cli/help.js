@@ -19,6 +19,10 @@ Usage:
 \t-t=name, --type=name \t Convert markdown to specified type.
 \t\t\t\t Supports: tex, pdf, revealjs, html, docx
 \t--config=file \t\t Specify full path to configuration file
+\t--copy-resources \t Copy default resources into ~/.patchouli/
+\t\t\t\t Runs on installation, needed for rendering documents.
+\t--copy-resources-force \t Force-copy default resources into ~/.patchouli/
+\t\t\t\t If there's conflicts, you can force copying of new files via this argument
     `.trim());
 }
 

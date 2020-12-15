@@ -10,6 +10,7 @@ let config = {
         mounts: [
             [process.cwd(), '/source'],
             ['/tmp', '/tmp'],
+            ['~/.patchouli/', '/opt/src/resources']
         ]
     },
 

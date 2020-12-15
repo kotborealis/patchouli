@@ -5,10 +5,16 @@ const config = require('./lib/config');
 const glob = require('glob');
 const md_only = require('./lib/predicate_md_files');
 const build_document = require('./lib/document_builder');
+const {copyResources} = require('./lib/copyResources');
 const debug = require('./lib/debug').extend('main');
-const {showVersion, showUsage} = require('./lib/help');
+const {showVersion, showUsage} = require('./cli/help');
 
-if(args.v || args.version) {
+if(args['copy-resources'] || args['copy-resources-force']){
+    copyResources();
+    return;
+}
+
+if(args.v || args.version){
     showVersion();
     return;
 }
