@@ -4,26 +4,33 @@ const {uid, gid} = os.userInfo();
 const patchouly_root = "/opt/src";
 
 let config = {
+    // docker-specific settings
     docker: {
-        mount_cwd: `-v ${process.cwd()}:/source`,
-        mount_tmp: `-v /tmp:/tmp`,
-        image: ` --rm kotborealis/patchouli:latest`,
+        // volume mounts
+        mounts: [
+            [process.cwd(), '/source'],
+            ['/tmp', '/tmp'],
+        ]
     },
 
+    // default pandoc params
     default_pandoc: [
         `-f`, `markdown+yaml_metadata_block+smart+fancy_lists+raw_tex-auto_identifiers`,
         '--standalone',
         '--toc',
     ],
 
+    // default tex params
     default_tex: [
         `--template=${path.join(patchouly_root, 'resources', './default.latex')}`,
     ],
 
+    // default docx params
     default_docx: [
 
     ],
 
+    // default revealjs params
     default_revealjs: [
 		`--template=${path.join(patchouly_root, 'resources', './default.revealjs')}`,
         `-V`, `revealjs-url=https://awooo.ru/reveal.js`,
@@ -31,20 +38,26 @@ let config = {
         `-t`, `revealjs`
     ],
 
-    pandoc: [],
-    tex: [],
-    docx: [],
-    revealjs: [],
+    // default html params
+    default_html: [
+        `--katex`
+    ],
 
+    // output files dir
     output_dir: '.out',
+    // output file name
     output: 'build.md',
 
+    // default args
     args: {},
 
+    // output extensions mapping
     output_ext_mapping: {
+        // output revealjs files as html files
         revealjs: "html"
     },
 
+    // use literate generator to execute inlined js code
     literate: false
 };
 
@@ -54,9 +67,9 @@ config = Object.assign(config, {
         --net=none
         --pid=host
         --uts=host
-        ${config.docker.mount_cwd} 
-        ${config.docker.mount_tmp} 
-        ${config.docker.image}
+        --rm
+        ${config.docker.mounts.map(([host, container]) => `-v ${host}:${container}`).join(' ')}
+        kotborealis/patchouli:latest
         /bin/bash -c "${
             cmd.join(" && ").replace(/"/g, "\\\"")
         }"`.replace(/\n/g, ''),
