@@ -10,22 +10,6 @@ describe('document generation', () => {
             const {exitCode} = await runCmd('cd test/integration/env && patchouli --type=tex');
             assert.equal(exitCode, 0);
         });
-
-        it('renders as in the reference', async () => {
-            fs.createReadStream('./test/integration/fixtures/reference_build.tex')
-                .pipe(fs.createWriteStream('./test/integration/artifacts/reference_build.tex'));
-
-            fs.createReadStream('./test/integration/env/build.tex')
-                .pipe(fs.createWriteStream('./test/integration/artifacts/build.tex'));
-
-            const {exitCode, stdout} = await runCmd(`
-                diff
-                ./test/integration/artifacts/reference_build.tex
-                ./test/integration/artifacts/build.tex
-            `);
-            assert.equal(stdout, ``);
-            assert.equal(exitCode, 0);
-        });
     });
 
     describe('pdf', () => {
