@@ -18,7 +18,7 @@ jobs:
       - name: Install patchouli
         run: |
           sudo npm install
-          sudo npm run build
+          sudo npm run docker-build
           sudo npm i -g . --unsafe-perm
 
       - name: Install mocha globally
