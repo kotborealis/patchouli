@@ -7,6 +7,7 @@ let config = {
     docker: {
         mount_cwd: `-v ${process.cwd()}:/source`,
         mount_tmp: `-v /tmp:/tmp`,
+        extra_mounts: [],
         image: ` --rm kotborealis/patchouli:latest`,
     },
 
@@ -56,6 +57,7 @@ config = Object.assign(config, {
         --uts=host
         ${config.docker.mount_cwd} 
         ${config.docker.mount_tmp} 
+        ${config.docker.extra_mounts.map(i => `-v ${i}`).join(' ')}
         ${config.docker.image}
         /bin/bash -c "${
             cmd.join(" && ").replace(/"/g, "\\\"")
