@@ -35,6 +35,21 @@ $endif$
 $for(header-includes)$
   $header-includes$
 $endfor$
+<style>
+code span.va {
+    color: #7b78f3;
+}
+code span.fu {
+    color: #205fff;
+}
+code span.st {
+    color: #64b2ff;
+}
+.reveal-viewport {
+    background: #191919;
+    background-color: hsl(0deg 0% 15%);
+}
+</style>
 </head>
 <body>
 $for(include-before)$
