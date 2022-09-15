@@ -1,6 +1,6 @@
 {
   "name": "patchouli",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "description": "",
   "main": "index.js",
   "publishConfig": {
@@ -21,11 +21,14 @@
   "license": "ISC",
   "dependencies": {
     "chen.js": "^2.0.2",
+    "chokidar": "^3.5.3",
     "debug": "^4.1.0",
     "gfm-code-block-regex": "^1.0.0",
     "gfm-code-blocks": "^1.0.0",
     "glob": "^7.1.2",
-    "tmp-promise": "^3.0.2"
+    "http-server": "^14.1.1",
+    "tmp-promise": "^3.0.2",
+    "zx": "^7.0.8"
   },
   "bin": {
     "patchouli": "index.js"
