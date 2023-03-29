@@ -43,7 +43,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Publish to docker hub
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: kotborealis/patchouli
         username: ${{ secrets.DOCKER_USERNAME }}
