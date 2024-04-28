@@ -7,7 +7,6 @@
     "registry": "https://npm.pkg.github.com/@kotborealis"
   },
   "scripts": {
-    "test": "mocha \"./test/**/*.spec.js\"",
     "docker-build": "docker build ./docker/ -t kotborealis/patchouli:latest",
     "docker-pull": "docker pull kotborealis/patchouli:latest",
     "docker-push": "docker push kotborealis/patchouli:latest",
