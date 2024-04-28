@@ -5,7 +5,7 @@ const patchouly_root = "/opt/src";
 
 let config = {
     docker: {
-        mount_cwd: `-v ${process.cwd()}:/source`,
+        mount_cwd: `-v "${process.cwd()}":/source`,
         mount_tmp: `-v /tmp:/tmp`,
         extra_mounts: [],
         image: ` --rm kotborealis/patchouli:latest`,
