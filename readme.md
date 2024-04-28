@@ -54,11 +54,6 @@ module.exports = {
 }
 ```
 
-## Literate JS
-
-Supports a form of 'literate'-js. See [example](https://github.com/kotborealis/patchouli/blob/master/test/literate/env/10_intro.md?plain=1).
-Use with flag `--literate` or with [such config](https://github.com/kotborealis/patchouli/blob/master/test/literate/env/.patchouli.js).
-
 ## Included filters
 
 * [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/)

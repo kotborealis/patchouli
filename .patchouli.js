@@ -44,9 +44,7 @@ let config = {
 
     output_ext_mapping: {
         revealjs: "html"
-    },
-
-    literate: false
+    }
 };
 
 config = Object.assign(config, {

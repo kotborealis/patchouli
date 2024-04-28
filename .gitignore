@@ -1,5 +1,1 @@
 node_modules
-./test/integration/env/.out
-./test/integration/artifacts/*
-./test/literate/env/.out
-./test/literate/artifacts/*
